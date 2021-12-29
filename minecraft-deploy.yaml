@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: minecraft
+  name: minecraft
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minecraft
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: minecraft
+    spec:
+      containers:
+      - image: docker.io/itzg/minecraft-server
+        name: minecraft-server
+        ports:
+        - containerPort: 25565
+        resources: 
+          requests:
+            memory: 1Gi
+            cpu: 1
+          limits:
+            memory: 1Gi
+            cpu: 1
+        volumeMounts:
+        - name: mc
+          mountPath: /data
+        envFrom:
+          - configMapRef:
+              name: mc-config
+      volumes:
+        - name: mc
+          persistentVolumeClaim:
+            claimName: minecraft-pvc
+status: {}
