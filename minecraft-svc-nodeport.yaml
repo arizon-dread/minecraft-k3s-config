@@ -3,8 +3,8 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: minecraft
-  name: minecraft-np
+    app: mc
+  name: mc-np
 spec:
   ports:
   - name: mc-np
@@ -12,7 +12,7 @@ spec:
     protocol: TCP
     targetPort: 25565
   selector:
-    app: minecraft
+    app: mc
   type: NodePort
 status:
   loadBalancer: {}

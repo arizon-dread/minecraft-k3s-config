@@ -3,22 +3,22 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: minecraft
-  name: minecraft
+    app: mc
+  name: mc
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: minecraft
+      app: mc
   strategy: {}
   template:
     metadata:
       labels:
-        app: minecraft
+        app: mc
     spec:
       containers:
-      - image: docker.io/itzg/minecraft-server
-        name: minecraft-server
+      - image: docker.io/itzg/minecraft-server:java8-multiarch
+        name: mc-server
         ports:
         - containerPort: 25565
         resources: 
@@ -37,5 +37,5 @@ spec:
       volumes:
         - name: mc
           persistentVolumeClaim:
-            claimName: minecraft-pvc
+            claimName: mc-pvc
 status: {}
