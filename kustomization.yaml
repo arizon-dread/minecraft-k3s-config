@@ -2,5 +2,5 @@ resources:
   - mc-config.yaml
   - minecraft-deploy.yaml
   - minecraft-svc-nodeport.yaml
-  - namespace.yaml
-  - storage.yaml
+#  - namespace.yaml
+#  - storage.yaml
