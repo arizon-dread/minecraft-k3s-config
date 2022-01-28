@@ -17,7 +17,7 @@ spec:
         app: mc
     spec:
       containers:
-      - image: docker.io/itzg/minecraft-server:java8-multiarch
+      - image: docker.io/itzg/minecraft-server:java17
         name: mc-server
         ports:
         - containerPort: 25565
