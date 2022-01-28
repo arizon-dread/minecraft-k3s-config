@@ -3,8 +3,7 @@ data:
   EULA: "TRUE"
   MAX_WORLD_SIZE: "5000"
   VIEW_DISTANCE: "6"
-  MEMORY: ""
-  JVM_XX_OPTS: "-XX:MaxRAMPercentage=75"
+  MEMORY: "768M"
 kind: ConfigMap
 metadata:
   creationTimestamp: null
