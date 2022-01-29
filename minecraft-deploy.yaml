@@ -21,13 +21,13 @@ spec:
         name: minecraft-server
         ports:
         - containerPort: 25565
-        resources: 
-          requests:
-            memory: 1Gi
-            cpu: 1
-          limits:
-            memory: 1Gi
-            cpu: 1
+#        resources: 
+#          requests:
+#            memory: 1Gi
+#            cpu: 1
+#          limits:
+#            memory: 1Gi
+#            cpu: 1
         volumeMounts:
         - name: mc
           mountPath: /data
