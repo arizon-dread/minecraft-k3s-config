@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: minecraft-bedrock-server
+  name: minecraft-bedrock-server
+  namespace: minecraft-bedrock
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minecraft-bedrock-server
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: minecraft-bedrock-server
+    spec:
+      containers:
+      - image: docker.io/itzg/minecraft-bedrock-server:latest
+        name: minecraft-bedrock-server
+        ports:
+          - containerPort: 19132
+            protocol: UDP
+        resources:
+          requests:
+            cpu: 750m
+            memory: 1Gi
+          limits:
+            cpu: 1500m
+            memory: 2Gi
+        env:
+          - name: EULA
+            value: "TRUE"
+          - name: SERVER_NAME
+            value: cloudnation
+          - name: SERVER_PORT
+            value: "19132"
+          - name: VIEW_DISTANCE
+            value: "10"
+          - name: DIFFICULTY
+            value: peaceful
+          - name: VERSION
+            value: LATEST
+          - name: ALLOW_CHEATS
+            value: "true"
+          - name: DEFAULT_PLAYER_PERMISSION_LEVEL
+            value: operator
+        volumeMounts:
+          - name: minecraft-storage
+            mountPath: /data
+      volumes:
+        - name: minecraft-storage
+          persistentVolumeClaim:
+            claimName: minecraft-storage
+status: {}

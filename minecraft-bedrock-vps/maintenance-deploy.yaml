@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: busybox
+  name: busybox
+  namespace: minecraft-bedrock
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: busybox
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: busybox
+    spec:
+      containers:
+      - image: docker.io/busybox:latest
+        name: busybox
+        command: ["sh", "-c", "tail -f /dev/null"]
+        ports:
+          - containerPort: 19132
+        resources:
+          requests:
+            cpu: 750m
+            memory: 1Gi
+          limits:
+            cpu: 1500m
+            memory: 2Gi
+        volumeMounts:
+          - name: minecraft-storage
+            mountPath: /data
+      volumes:
+        - name: minecraft-storage
+          persistentVolumeClaim:
+            claimName: minecraft-storage
+status: {}
